@@ -58,6 +58,16 @@ record GADataSet {
     union { null, string } description = null;
 }
 
+record GAOriginalData {
+
+  /* This is an ID to use in a record to reference the raw original data */  
+  string ID;
+  
+  /* This stores a link to the original data - this can be an FTP, Google Cloud, etc. */
+  string URI;
+  
+}
+
 record GAReadGroup {
 
   // The readgroup ID.
@@ -140,6 +150,7 @@ record GAMappingPosition {
 }
 
 record GALinearAlignment { // a linear alignment can be represented by one CIGAR string
+    GAOriginalData originalDataID; //This would store the ID to the original data
     GAMappingPosition position;
     union { null, int } mappingQuality = null;
     array<GACigarUnit> cigar = [];
